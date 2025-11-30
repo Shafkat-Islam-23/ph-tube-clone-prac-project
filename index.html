@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- tailwind cdn -->
+    <!-- daisy UI cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="sty" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section>
+      <nav
+        class="w-11/12 mx-auto flex justify-between items-center py-5 border-b-2 border-gray-500"
+      >
+        <img src="assets/Logo.png" alt="" />
+        <button class="bg-gray-400 p-2 px-3">Sort by view</button>
+        <button class="bg-red-500 text-white px-4 py-2">Blog</button>
+      </nav>
+
+      <section id="buttons" class="flex justify-center gap-5 p-5">
+        <button class="bg-red-500 px-7 font-bold rounded-lg text-white">
+          All
+        </button>
+      </section>
+    </section>
+
+    <section
+      id="vedio-container"
+      class="grid grid-cols-4 justify-center mx-auto"
+    ></section>
+
+    <script src="script/index.js"></script>
+  </body>
+</html>
