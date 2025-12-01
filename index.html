@@ -26,7 +26,10 @@
       </nav>
 
       <section id="buttons" class="flex justify-center gap-5 p-5">
-        <button class="bg-red-500 px-7 font-bold rounded-lg text-white">
+        <button
+          onclick="loadVideos()"
+          class="bg-red-500 px-7 font-bold rounded-lg text-white"
+        >
           All
         </button>
       </section>
@@ -34,7 +37,7 @@
 
     <section
       id="vedio-container"
-      class="grid grid-cols-4 justify-center mx-auto"
+      class="grid grid-cols-4 justify-center w-9/10 gap-15 mx-auto pt-10"
     ></section>
 
     <script src="script/index.js"></script>
