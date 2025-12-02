@@ -6,16 +6,22 @@ function displayCategories(categories) {
   const buttonContainer = document.getElementById("buttons");
 
   for (let item of categories) {
-    // console.log(item);
-
-    // create a button
     const button = document.createElement("button");
-    button.classList = "btn";
+
     button.innerText = item.category;
+    button.onclick = () => {
+      //document.getElementsByClassName("btn").;
+      button.classList.remove("btn");
+      // removing style from other buttons
 
-    console.log(item.category_id);
+      for (let item of categories) {
+        button.classList.remove("btn");
+      }
 
-    // add button to category container
+      button.classList.add("btn");
+      loadCatagoryVideos(item.category_id);
+    };
+
     buttonContainer.appendChild(button);
   }
 }
@@ -28,16 +34,44 @@ function loadVideos() {
     .then((data) => showVideos(data.videos));
 }
 
-// function to show all the videos
+const loadCatagoryVideos = (id) => {
+  // console.log(id);
+  fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
+    .then((res) => res.json())
+    .then((data) => {
+      // const btnClass = document.getElementsByClassName("btn");
+      //btnClass.classList.add("active");
+      showVideos(data.category);
+    });
+};
+
+//loadCatagoryVideos("1001");
 
 const showVideos = (vids) => {
-  console.log(vids);
   const vedioContainer = document.getElementById("vedio-container");
+
+  if (vids.length == 0) {
+    vedioContainer.innerHTML = `
+     <div
+        class="col-span-full h-[600px] flex flex-col justify-center items-center text-center gap-5"
+      >
+        <img src="assets/Icon.png" alt="" />
+        <h1 class="text-2xl font-bold">
+          Oops!! Sorry, There is no content here
+        </h1>
+      </div>
+    `;
+
+    return;
+  }
+
+  vedioContainer.innerHTML = "";
 
   const newCard = document.createElement("div");
 
   vids.forEach((vid) => {
     // console.log(vid);
+
     const newCard = document.createElement("div");
     newCard.innerHTML = `
      <div class="card bg-base-100 w-96 shadow-sm flex flex-col gap-5 h-auto">
@@ -75,8 +109,6 @@ const showVideos = (vids) => {
   `;
     vedioContainer.appendChild(newCard);
   });
-
-  //vedioContainer.appendChild(newCard);
 };
 
 //loadVideos();
