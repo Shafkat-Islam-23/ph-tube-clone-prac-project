@@ -1,9 +1,10 @@
-.btn:hover {
+.btn-nav:hover {
   background-color: red;
   color: white;
 }
 
-.btn {
+.btn-nav {
   background-color: red;
   color: white;
+  padding: 4px;
 }
