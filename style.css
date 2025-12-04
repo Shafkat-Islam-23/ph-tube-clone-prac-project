@@ -1,10 +1,4 @@
-.btn-nav:hover {
-  background-color: red;
+.btn:hover {
+  background-color: red !important;
   color: white;
-}
-
-.btn-nav {
-  background-color: red;
-  color: white;
-  padding: 4px;
 }

@@ -5,28 +5,18 @@ fetch("https://openapi.programming-hero.com/api/phero-tube/categories")
 function displayCategories(categories) {
   const buttonContainer = document.getElementById("buttons");
 
+  // Creating the category buttons dynamically And calling the loadCatagoryVideos function according to the category when button is clicked
   for (let item of categories) {
     const button = document.createElement("button");
-
-    button.innerText = item.category;
-    button.onclick = () => {
-      //document.getElementsByClassName("btn").;
-      button.classList.remove("btn-nav");
-      // removing style from other buttons
-
-      for (let item of categories) {
-        button.classList.remove("btn-nav");
-      }
-
-      button.classList.add("btn-nav");
-      loadCatagoryVideos(item.category_id);
-    };
-
-    buttonContainer.appendChild(button);
+    const div = document.createElement("div");
+    div.innerHTML = `
+    <button onclick = loadCatagoryVideos(${item.category_id})  class="btn">${item.category}</button>
+    `;
+    buttonContainer.appendChild(div);
   }
 }
 
-// function to load all ther vedios
+// function to load all ther vedios when 'All' button is clicked
 
 function loadVideos(search = "") {
   fetch(
@@ -36,18 +26,15 @@ function loadVideos(search = "") {
     .then((data) => showVideos(data.videos));
 }
 
+// function to load the vedios
 const loadCatagoryVideos = (id) => {
   // console.log(id);
   fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
     .then((res) => res.json())
     .then((data) => {
-      // const btnClass = document.getElementsByClassName("btn");
-      //btnClass.classList.add("active");
       showVideos(data.category);
     });
 };
-
-//loadCatagoryVideos("1001");
 
 const showVideos = (vids) => {
   const vedioContainer = document.getElementById("vedio-container");
@@ -120,7 +107,7 @@ const showVideos = (vids) => {
         
        <div  class = 'flex justify-center items-center pb-5'> <button onclick =loadVideoDetails('${
          vid.video_id
-       }') class="btn btn-wide  ">Wide</button></div>
+       }') class="btn btn-wide  ">Details </button></div>
        
         
       </div>
@@ -130,7 +117,7 @@ const showVideos = (vids) => {
   });
 };
 
-//loadVideos();
+//function to load details of each vedio individually when details button is clicked
 
 const loadVideoDetails = (id) => {
   // console.log("aaa");
@@ -154,6 +141,7 @@ const showVedioDetails = (details) => {
   `;
 };
 
+// fetching the input given by the user in the search bar
 document.getElementById("input_search").addEventListener("keyup", (e) => {
   const searchInput = e.target.value;
   loadVideos(searchInput);
